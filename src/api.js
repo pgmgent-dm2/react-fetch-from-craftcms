@@ -1,55 +1,5 @@
-const PROJECTS_QUERY = `
-  query Projects {
-    entries(section: "projects") {
-      id
-      slug
-      title
-      ... on projectsET_Entry {
-        featuredImagesMatrix {
-          ... on featuredImageET_Entry {
-            isThumbnail
-            image {
-              url
-            }
-          }
-        }
-      }
-    }
-  }
-`;
-
-const PROJECT_BY_SLUG_QUERY = `
-  query ProjectBySlug($slug: [String]) {
-    entries(section: "projects", slug: $slug) {
-      id
-      slug
-      title
-      ... on projectsET_Entry {
-        featuredImagesMatrix {
-          ... on featuredImageET_Entry {
-            isThumbnail
-            image {
-              url
-            }
-          }
-        }
-      }
-    }
-  }
-`;
-
-function mapProject(entry) {
-  const blocks = entry.featuredImagesMatrix || [];
-  const thumbnail = blocks.find((block) => block.isThumbnail);
-
-  return {
-    id: entry.id,
-    slug: entry.slug,
-    title: entry.title || "Zonder titel",
-    imageUrl: thumbnail?.image?.[0]?.url || null,
-  };
-}
-
+// Helper voor GraphQL requests naar Craft CMS
+// Deze wordt later gebruikt om projects op te halen
 async function graphqlRequest(query, variables) {
   const response = await fetch(import.meta.env.VITE_CRAFT_API_URL, {
     method: "POST",
@@ -71,15 +21,4 @@ async function graphqlRequest(query, variables) {
   }
 
   return json.data;
-}
-
-export async function fetchProjects() {
-  const data = await graphqlRequest(PROJECTS_QUERY);
-  return (data?.entries || []).map(mapProject);
-}
-
-export async function fetchProjectBySlug(slug) {
-  const data = await graphqlRequest(PROJECT_BY_SLUG_QUERY, { slug: [slug] });
-  const entry = data?.entries?.[0];
-  return entry ? mapProject(entry) : null;
 }
