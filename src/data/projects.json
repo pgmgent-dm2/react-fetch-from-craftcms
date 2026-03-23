@@ -1,0 +1,44 @@
+[
+  {
+    "id": "37",
+    "slug": "castle-in-the-sky",
+    "title": "Castle in the Sky",
+    "imageUrl": "https://picsum.photos/400/300?random=1"
+  },
+  {
+    "id": "69",
+    "slug": "bridge-to-terabithia",
+    "title": "Bridge to Terabithia",
+    "imageUrl": "https://picsum.photos/400/300?random=2"
+  },
+  {
+    "id": "178",
+    "slug": "why-11ty-rocks",
+    "title": "Why 11ty rocks",
+    "imageUrl": "https://picsum.photos/400/300?random=3"
+  },
+  {
+    "id": "210",
+    "slug": "design-patterns",
+    "title": "Design Patterns",
+    "imageUrl": "https://picsum.photos/400/300?random=4"
+  },
+  {
+    "id": "245",
+    "slug": "web-performance",
+    "title": "Web Performance",
+    "imageUrl": "https://picsum.photos/400/300?random=5"
+  },
+  {
+    "id": "312",
+    "slug": "react-fundamentals",
+    "title": "React Fundamentals",
+    "imageUrl": "https://picsum.photos/400/300?random=6"
+  },
+  {
+    "id": "401",
+    "slug": "api-design",
+    "title": "API Design Best Practices",
+    "imageUrl": "https://picsum.photos/400/300?random=7"
+  }
+]
