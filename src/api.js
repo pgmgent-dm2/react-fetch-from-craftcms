@@ -1,3 +1,20 @@
+const GET_ALL_PROJECTS_QUERY = `
+  query Projects {
+    projects: entries(section: "projects") {
+      id
+      title
+      slug
+    }
+  }
+`;
+
+export async function fetchAllProjects() {
+  const data = await graphqlRequest(GET_ALL_PROJECTS_QUERY);
+  console.log(data.projects);
+  return data.projects;
+}
+
+
 // Helper voor GraphQL requests naar Craft CMS
 // Deze wordt later gebruikt om projects op te halen
 async function graphqlRequest(query, variables) {

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import projectsData from "../data/projects.json";
 import ProjectCard from "../components/ProjectCard";
+import { fetchAllProjects } from "../api";
 
 export default function ProjectsListPage({ onOpenProject }) {
   const [projects, setProjects] = useState([]);
@@ -13,9 +14,10 @@ export default function ProjectsListPage({ onOpenProject }) {
       setError("");
 
       try {
-        // TODO: Replace with fetchProjects() from api.js when connected to Craft CMS
-        // const list = await fetchProjects();
-        const list = projectsData;
+
+        const realProjects = await fetchAllProjects();
+        // const list = projectsData;
+        const list = realProjects;
         setProjects(list);
       } catch (err) {
         setError(err.message || "Onbekende fout");
