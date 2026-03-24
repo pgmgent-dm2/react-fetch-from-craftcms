@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import projectsData from "../data/projects.json";
+import {fetchProjectBySlug} from "../api";
 
 export default function ProjectDetailPage({ slug, onBack }) {
   const [project, setProject] = useState(null);
@@ -12,10 +13,10 @@ export default function ProjectDetailPage({ slug, onBack }) {
       setError("");
 
       try {
-        // TODO: Replace with fetchProjectBySlug() from api.js when connected to Craft CMS
-        // const detail = await fetchProjectBySlug(slug);
-        const detail = projectsData.find((p) => p.slug === slug) || null;
-        setProject(detail);
+        const project = await fetchProjectBySlug(slug);
+        console.log(project);
+
+        setProject(project);
       } catch (err) {
         setError(err.message || "Onbekende fout");
       } finally {
